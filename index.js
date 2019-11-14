@@ -11,9 +11,9 @@ app.use(bodyParser.json())
 const morgan = require('morgan')
 morgan.token('body', function getBody(req) {
     if (req.method === 'POST') {
-        return JSON.stringify(req.body);
+        return JSON.stringify(req.body)
     }
-    return '';
+    return ''
 })
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
@@ -23,41 +23,41 @@ app.use(cors())
 
 let persons = [
     {
-        "name": "Arto Hellas",
-        "number": "040-123456",
-        "id": 1
+        'name': 'Arto Hellas',
+        'number': '040-123456',
+        'id': 1
     },
     {
-        "name": "Ada Lovelace",
-        "number": "39-44-5323523",
-        "id": 2
+        'name': 'Ada Lovelace',
+        'number': '39-44-5323523',
+        'id': 2
     },
     {
-        "name": "Dan Abramov",
-        "number": "12-43-234345",
-        "id": 3
+        'name': 'Dan Abramov',
+        'number': '12-43-234345',
+        'id': 3
     },
     {
-        "name": "Mary Poppendieck",
-        "number": "39-23-6423122",
-        "id": 4
+        'name': 'Mary Poppendieck',
+        'number': '39-23-6423122',
+        'id': 4
     }
 ]
 
 app.use(express.static('build'))
 
 const checkBody = (body) => {
-    let errorText = null;
+    let errorText = null
     if (!body.name) {
-        errorText = 'name missing';
+        errorText = 'name missing'
     }
     else if (!body.number) {
-        errorText = 'number missing';
+        errorText = 'number missing'
     }
     else if (persons.map(person => person.name).includes(body.name)) {
-        errorText = 'name must be unique';
+        errorText = 'name must be unique'
     }
-    return errorText;
+    return errorText
 }
 
 app.get('/info', (req, res) => {
@@ -74,12 +74,12 @@ app.get('/api/persons', (req, res) => {
 app.post('/api/persons', (request, response, next) => {
     const body = request.body
 
-    let errorText = checkBody(body)
+    /* let errorText = checkBody(body)
     if (errorText) {
         return response.status(400).json({
             error: errorText
         })
-    }
+    } */
 
     const person = new Person({
         name: body.name,
@@ -136,7 +136,7 @@ app.use(unknownEndpoint)
 
 const errorHandler = (error, request, response, next) => {
     //  console.error(error.message)
-    if (error.name === 'CastError' && error.kind == 'ObjectId') {
+    if (error.name === 'CastError' && error.kind === 'ObjectId') {
         return response.status(400).send({ error: 'malformatted id' })
     }
     else if (error.name === 'ValidationError') {

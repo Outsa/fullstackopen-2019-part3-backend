@@ -26,8 +26,8 @@ if (process.argv[3] !== undefined && process.argv[4] !== undefined) {
     })
 
     person.save().then(response => {
-        console.log('added ' + person.name + ' number ' + person.number + ' to phonebook');
-        mongoose.connection.close();
+        console.log('added ' + person.name + ' number ' + person.number + ' to phonebook')
+        mongoose.connection.close()
     })
 }
 else {
