@@ -46,20 +46,6 @@ let persons = [
 
 app.use(express.static('build'))
 
-const checkBody = (body) => {
-    let errorText = null
-    if (!body.name) {
-        errorText = 'name missing'
-    }
-    else if (!body.number) {
-        errorText = 'number missing'
-    }
-    else if (persons.map(person => person.name).includes(body.name)) {
-        errorText = 'name must be unique'
-    }
-    return errorText
-}
-
 app.get('/info', (req, res) => {
     res.send('Phonebook has info for ' + persons.length + ' people.</br></br>' + new Date())
 })
@@ -73,13 +59,6 @@ app.get('/api/persons', (req, res) => {
 
 app.post('/api/persons', (request, response, next) => {
     const body = request.body
-
-    /* let errorText = checkBody(body)
-    if (errorText) {
-        return response.status(400).json({
-            error: errorText
-        })
-    } */
 
     const person = new Person({
         name: body.name,
