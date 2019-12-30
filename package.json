@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Outsa/fullstackopen-2019-part3.git"
+    "url": "git+https://github.com/Outsa/fullstackopen-2019-part3-backend.git"
   },
   "author": "Outi Syysjoki",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Outsa/fullstackopen-2019-part3/issues"
+    "url": "https://github.com/Outsa/fullstackopen-2019-part3-backend/issues"
   },
-  "homepage": "https://github.com/Outsa/fullstackopen-2019-part3#readme",
+  "homepage": "https://github.com/Outsa/fullstackopen-2019-part3-backend#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
